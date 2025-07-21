@@ -70,17 +70,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof particlesJS !== 'undefined') {
         particlesJS('particles-js', {
             particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
+                number: { value: 110, density: { enable: true, value_area: 700 } },
                 color: { value: '#ffffff' }, // Particles are white
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
+                shape: { type: 'star' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 4, random: true },
                 line_linked: {
                     enable: true,
-                    distance: 150,
+                    distance: 170, // Distance between particles
                     color: '#ffffff', // Lines are white
                     opacity: 0.6,
-                    width: 1.5
+                    width: 0.5
                 },
                 move: {
                     enable: true,
@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 modes: {
                     grab: { distance: 200, line_linked: { opacity: 1 } },
-                    bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
-                    repulse: { distance: 200, duration: 0.4 },
+                    bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 30 },
+                    repulse: { distance: 300, duration: 1.4 },
                     push: { particles_nb: 4 },
                     remove: { particles_nb: 2 }
                 }

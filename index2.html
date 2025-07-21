@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Ashraf Khan, a passionate Full-Stack Web Developer showcasing projects, skills, and education.">
+    <title>Ashraf Khan | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* General Resets & Typography */
+:root {
+    --primary-color: #00bcd4; /* Cyan-like */
+    --secondary-color: #ff4081; /* Pink-like */
+    --text-color-light: #e0e0e0;
+    --text-color-dark: #333;
+    --bg-dark: #1a1a2e; /* Dark blue/purple */
+    --card-bg: rgba(255, 255, 255, 0.08);
+    --border-color: rgba(255, 255, 255, 0.15);
+    --hover-light: #2c2c4d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #0a0a23 0%, #1a1a2e 100%); /* Gradient for cosmic effect */
+    color: var(--text-color-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+    position: relative; /* For positioning stars */
+}
+
+/* Starry Background Effect */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+}
+
+body::before {
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 255, 255, 0.05) 0%,
+        transparent 1px
+    );
+    background-size: 3px 3px;
+    opacity: 0.5;
+    animation: twinkle 10s infinite linear;
+}
+
+body::after {
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 255, 255, 0.08) 0%,
+        transparent 1.5px
+    );
+    background-size: 5px 5px;
+    opacity: 0.3;
+    animation: twinkle 15s infinite linear reverse;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+    100% { opacity: 0.3; transform: scale(1); }
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Navigation Bar */
+.navbar {
+    background: rgba(15, 20, 30, 0.9);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav-links li {
+    margin: 0 1rem;
+}
+
+.nav-links a {
+    color: var(--text-color-light);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--secondary-color);
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus::after {
+    width: 100%;
+}
+
+/* Mobile Menu Button */
+.mobile-menu {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.mobile-menu .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--text-color-light);
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+/* Mobile Menu Active State */
+.mobile-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Sections */
+.section-padded {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(26, 26, 46, 0.7);
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.section-title {
+    font-size: 2.8rem;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 4px;
+    background: var(--secondary-color);
+    left: 20%;
+    bottom: -10px;
+    border-radius: 2px;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 2rem;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.hero-content h1 {
+    font-size: 4.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 10px rgba(0, 188, 212, 0.7); }
+    to { text-shadow: 0 0 20px rgba(255, 64, 129, 0.8), 0 0 30px rgba(0, 188, 212, 0.6); }
+}
+
+.hero-content .tagline {
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    min-height: 2.2rem;
+    display: inline-block;
+}
+
+.hero-content .tagline #role-text {
+    transition: opacity 0.4s ease-in-out;
+}
+
+.hero-content p {
+    font-size: 1.15rem;
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    color: var(--text-color-light);
+}
+
+.social-links a {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--bg-dark);
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    margin: 0 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-5px);
+    color: var(--text-color-light);
+}
+
+/* Projects Section */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-color: var(--primary-color);
+}
+
+.project-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.project-card p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.project-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.project-links a {
+    background-color: var(--primary-color);
+    color: var(--bg-dark);
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+
+.project-links a:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    color: var(--text-color-light);
+}
+
+/* Skills Section */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-category {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    transition: box-shadow 0.3s ease;
+}
+
+.skill-category:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-color: var(--secondary-color);
+}
+
+.skill-category h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+.skill-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.skill-list li {
+    background: rgba(0, 188, 212, 0.2);
+    padding: 0.7rem 1.2rem;
+    border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 188, 212, 0.4);
+    color: var(--text-color-light);
+}
+
+.skill-list li:hover {
+    background: var(--secondary-color);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-color: var(--secondary-color);
+}
+
+/* Education Section */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    position: relative;
+    padding-left: 20px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--border-color);
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+.timeline-item {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: left;
+    max-width: 600px;
+    width: 90%;
+    border: 1px solid var(--border-color);
+    position: relative;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    z-index: 1;
+    border: 3px solid var(--bg-dark);
+}
+
+.timeline-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.timeline-item .timeline-meta {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.timeline-item p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+/* Contact Section */
+.contact-info {
+    margin-top: 2rem;
+    font-size: 1.15rem;
+    line-height: 2;
+}
+
+.contact-info p a {
+    font-weight: 600;
+}
+
+/* Footer */
+.footer {
+    background: rgba(15, 20, 30, 0.9);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .section-title {
+        font-size: 2.2rem;
+    }
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    .hero-content .tagline {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background: rgba(15, 20, 30, 0.95);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        padding: 1rem 0;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .nav-links li {
+        margin: 0.8rem 0;
+    }
+
+    .nav-links a {
+        padding: 0.8rem 0;
+        font-size: 1.2rem;
+        display: block;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .section-padded {
+        padding: 4rem 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    .hero-content .tagline {
+        font-size: 1.3rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .project-card, .skill-category, .timeline-item {
+        padding: 1.5rem;
+    }
+    .skill-list li {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    .timeline::before {
+        left: 20px;
+    }
+    .timeline-item {
+        margin-left: 20px;
+        width: calc(100% - 40px);
+    }
+    .timeline-item::before {
+        left: -18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-padded {
+        padding: 3rem 1rem;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-content .tagline {
+        font-size: 1.1rem;
+    }
+    .project-links a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    .social-links a {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">ASHRAF KHAN</div>
+        <button class="mobile-menu" id="mobile-menu" aria-label="Toggle navigation menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <ul class="nav-links nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="Ashraf Khan Resume.pdf" target="_blank" aria-label="Download Resume">Resume</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">ASHRAF KHAN</h1>
+            <p class="tagline" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <span id="role-text">Web Developer.</span>
+            </p>
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                Hello! I’m Ashraf Khan, a passionate and motivated BCA graduate stepping into the tech world as a **Full-Stack Web Developer**. On the frontend, I bring ideas to life using **HTML, CSS, JavaScript**, along with frameworks like **Bootstrap, Tailwind CSS, and Angular**. On the backend, I build robust applications using **Node.js, Express.js, ASP.NET MVC, and REST APIs**.
+                I'm proficient in working with databases including **SQL Server, MySQL, and MongoDB**, and I use **Git and GitHub** to manage code and collaborate effectively.
+                I’m excited to kick-start my journey as a software engineer, where I can apply my skills across diverse stacks, continuously grow, and contribute to impactful tech solutions.
+            </p>
+            <div class="social-links" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
+                <a href="https://github.com/Ashrafkhan-04" target="_blank" aria-label="GitHub Profile">GitHub</a>
+                <a href="https://www.linkedin.com/in/ashraf-khan-06b3b6365/" target="_blank" aria-label="LinkedIn Profile">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section-padded">
+        <h2 class="section-title" data-aos="fade-down" data-aos-duration="800">Projects</h2>
+        <div class="project-grid">
+            <div class="project-card" data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="100">
+                <h3>MEMORY BASED CARD GAME</h3>
+                <p>A fully Responsive Memory-Based Card Game built with HTML, CSS and JavaScript.</p>
+                <div class="project-links">
+                    <a href="https://arbazz87.github.io/Card-Game/" target="_blank">Live Demo</a>
+                    <a href="https://github.com/Ashrafkhan-04/myfirstrepo" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-padded">
+        <h2 class="section-title" data-aos="fade-down" data-aos-duration="800">Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+                <h3>Client-Side</h3>
+                <ul class="skill-list">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+            <div class="skill-category" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+                <h3>Server-Side</h3>
+                <ul class="skill-list">
+                    <li>ASP.NET-MVC</li>
+                    <li>C#</li>
+                    <li>CPP</li>
+                    <li>Java</li>
+                </ul>
+            </div>
+            <div class="skill-category" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
+                <h3>Frameworks & Libraries</h3>
+                <ul class="skill-list">
+                    <li>Angular.js</li>
+                    <li>Bootstrap 5</li>
+                    <li>Tailwind CSS</li>
+                </ul>
+            </div>
+            <div class="skill-category" data-aos="fade-right" data-aos-duration="800" data-aos-delay="400">
+                <h3>Tools & Platforms</h3>
+                <ul class="skill-list">
+                    <li>Git</li>
+                    <li>GitHub</li>
+                    <li>Visual Studio Code</li>
+                    <li>Docker</li>
+                    <li>Apache Server</li>
+                </ul>
+            </div>
+            <div class="skill-category" data-aos="fade-right" data-aos-duration="800" data-aos-delay="500">
+                <h3>Databases</h3>
+                <ul class="skill-list">
+                    <li>SQL Server</li>
+                    <li>MongoDB</li>
+                    <li>MySQL</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section-padded">
+        <h2 class="section-title" data-aos="fade-down" data-aos-duration="800">Education</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-left" data-aos-duration="800">
+                <h3>B.C.A Bachelors of Computer Applications</h3>
+                <p class="timeline-meta">Babasaheb Ambedkar Marathwada University, 2022 - 2025</p>
+                <p>Specialized in web development, database management, and software engineering.</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-left" data-aos-duration="800">
+                <h3>H.S.C Higher Secondary Certificate</h3>
+                <p class="timeline-meta">Kohinoor College, Maharashtra Board, 2021 - 2022</p>
+                <p>Completed with a focus on Account, Management and mathematics.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padded">
+        <h2 class="section-title" data-aos="fade-down" data-aos-duration="800">Contact Me</h2>
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+        <div class="contact-info" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+            <p>Phone: <a href="tel:+917498981631">+91 74989 81631</a></p>
+            <p>Email: <a href="mailto:ashrrrrf.04@gmail.com">ashrrrrf.04@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/ashraf-khan-06b3b6365/" target="_blank">https://www.linkedin.com/in/ashraf-khan-06b3b6365/</a></p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Ashraf Khan. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // AOS Initialization
+            AOS.init({
+                duration: 1000,
+                easing: 'ease-out-quad',
+                once: true,
+                mirror: false,
+                anchorPlacement: 'top-bottom',
+            });
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        const navList = document.querySelector('.nav-list');
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if (navList.classList.contains('active')) {
+                            navList.classList.remove('active');
+                            mobileMenu.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.querySelector('.nav-list');
+            if (mobileMenu && navList) {
+                mobileMenu.addEventListener('click', () => {
+                    navList.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                });
+            }
+
+            // Dynamic Role Text Switching
+            const roles = ["Front-end Developer.", "Back-end Developer.", "Full-Stack Developer.", "SoftWare Developer.", "Freelancer."];
+            let index = 0;
+            const roleText = document.getElementById("role-text");
+            function switchRole() {
+                if (!roleText) return;
+                index = (index + 1) % roles.length;
+                roleText.style.opacity = 0;
+                setTimeout(() => {
+                    roleText.textContent = roles[index];
+                    roleText.style.opacity = 1;
+                }, 500);
+            }
+            if (roleText) {
+                switchRole();
+                setInterval(switchRole, 2200);
+            }
+        });
+    </script>
+</body>
+</html>
