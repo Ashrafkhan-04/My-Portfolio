@@ -70,9 +70,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof particlesJS !== 'undefined') {
         particlesJS('particles-js', {
             particles: {
-                number: { value: 110, density: { enable: true, value_area: 700 } },
+                number: { value: 50, density: { enable: true, value_area: 400 } },
                 color: { value: '#ffffff' }, // Particles are white
-                shape: { type: 'star' },
+                shape: { type: 'circle' },
                 opacity: { value: 0.5, random: false },
                 size: { value: 4, random: true },
                 line_linked: {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 move: {
                     enable: true,
-                    speed: 8, // Adjust speed as desired
+                    speed: 4, // Adjust speed as desired
                     direction: 'none',
                     random: false, // Set to true for more chaotic movement
                     straight: false,
